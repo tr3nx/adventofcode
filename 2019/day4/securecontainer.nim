@@ -13,13 +13,17 @@ proc group(s: string): seq[seq[string]] =
     result.add(t)
 
 proc hasDouble(s: string): bool =
-  result = group(s).mapIt(it.join).filterIt(it.len == 2).len > 0
+  result = group(s)
+    .mapIt(it.join)
+    .filterIt(it.len == 2)
+    .len > 0
 
 proc hasIncreasing(s: string): bool =
   result = true
   for i, c in s.pairs:
     if i+1 >= s.len: break
-    elif parseInt($s[i+1]) < parseInt($c): return false
+    elif parseInt($s[i+1]) < parseInt($c):
+      return false
 
 proc solve(s: string): int =
   let l: int = parseInt(s[0..5])
