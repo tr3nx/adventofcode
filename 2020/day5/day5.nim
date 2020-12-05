@@ -9,6 +9,7 @@ proc solvePartOne(filename: string): int =
       cols: tuple[lower, upper: int] = (0, 7)
       row: int
       col: int
+      attempt: int
 
     for r in line[0..6]:
       if r == 'F':
@@ -32,14 +33,12 @@ proc solvePartOne(filename: string): int =
 
     col = cols.lower
 
-    var attempt = (row * 8) + col
+    attempt = (row * 8) + col
     if attempt > result:
       result = attempt
 
 proc solvePartTwo(filename: string): int =
-  var
-    seats: seq[int]
-    guess: int
+  var seats: seq[int]
 
   for line in filename.lines:
     var
@@ -75,9 +74,7 @@ proc solvePartTwo(filename: string): int =
   seats = seats.sorted
   for i, seat in seats.pairs:
     if i + 1 < seats.len and seats[i + 1] - seat > 1:
-      guess = seat + 1
-
-  return guess
+      result = seat + 1
 
 echo solvePartOne("day5.in")
 echo solvePartTwo("day5.in")
